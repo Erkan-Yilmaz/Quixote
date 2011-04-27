@@ -219,13 +219,41 @@ namespace Quixote{
             }catch(Exception x){
                 result.Passed = false;
                 result.CSS =  "fail";
-                result.Result = new HtmlString(Site.BuildExceptionMessage(x).Trim());
+                result.Result = new HtmlString(BuildExceptionMessage(x).Trim());
                 result.Message = x.Message;
                 result.Threw = true;
             }
         
             return result;
         }
+
+        public static string BuildExceptionMessage(Exception x) {
+
+            Exception logException = x;
+            if (x.InnerException != null)
+                logException = x.InnerException;
+            var sb = new StringBuilder();
+            sb.AppendLine("Error in Path :" + HttpContext.Current.Request.Path);
+
+            // Get the QueryString along with the Virtual Path
+            sb.AppendLine("Raw Url :" + HttpContext.Current.Request.RawUrl);
+
+
+            // Get the error message
+            sb.AppendLine("Message :" + logException.Message);
+
+            // Source of the message
+            sb.AppendLine("Source :" + logException.Source);
+
+            // Stack Trace of the error
+
+            sb.AppendLine("Stack Trace :" + logException.StackTrace);
+
+            // Method where the error occurred
+            sb.AppendLine("TargetSite :" + logException.TargetSite);
+            return sb.ToString();
+        }
+
 
         /// <summary>
         /// There is no difference between Should/ShouldNot. Just readability
