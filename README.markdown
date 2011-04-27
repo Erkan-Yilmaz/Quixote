@@ -61,13 +61,13 @@ We can also get freaky and run some functional tests against our site:
 	
 	@TheFollowing.Describes("the home page")
 		@It.Should("say hello to me", () => {
-			return Get("~/").Title.ShouldEqual("Hello Rob");
+			return Runner.Get("~/").Title.ShouldEqual("Hello Rob");
 		})
 		@It.Should("have 5 links", () => {
-			return Get("~/").Links.ShouldHaveACountOf(5);
+			return Runner.Get("~/").Links.ShouldHaveACountOf(5);
 		})
 		@It.Should("show me a funny thing if I post 42", () => {
-			return Post("~/",new{EasterEgg = 42}).Body.ShouldContain("1337");
+			return Runner.Post("~/",new{EasterEgg = 42}).Body.ShouldContain("1337");
 		})
 
 There's a bit more that's possible here - but I would probably start arm-waving. I'll build this out as time goes on (and as I use it) so I can extract usable things rather than what I think would be "neat". 
