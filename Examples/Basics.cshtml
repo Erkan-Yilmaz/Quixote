@@ -1,6 +1,6 @@
 @using Quixote;
 
-@It.Describes("Should assertions")
+@TheFollowing.Describes("Should assertions")
 
     @It.Should("True should be true", () => {
         return true.ShouldBeTrue();
@@ -54,30 +54,30 @@
 
 
 
-@It.Describes("Get Requests")
+@TheFollowing.Describes("Get Requests")
 
-    @It.Should("Have a title that says welcome to our site", () => {
+    @They.Should("Have a title that says welcome to our site", () => {
          return Runner.Get("~/").Title.ShouldContain("welcome to our site");
     })
-    @It.Should("Have a 6 links in the body of the home page", () => {
+    @They.Should("Have a 6 links in the body of the home page", () => {
          return Runner.Get("~/").BodyLinks.ShouldHaveACountOf(6);
     
     })
-    @It.Should("Have a 2 headings in the body of the home page", () => {
+    @They.Should("Have a 2 headings in the body of the home page", () => {
          return Runner.Get("~/").Headings.ShouldHaveACountOf(2);
     
     })
-    @It.Should("The second header should say It's a lot of fun", () => {
+    @They.Should("The second header should say It's a lot of fun", () => {
         return Runner.Get("~/").Headings[1].Trim().ShouldEqual("It's a lot of fun");
     
     })
 
-@It.Describes("Post Requests")
-    @It.Should("Post 2 values to the post page", () => {
+@TheFollowing.Describes("Post Requests")
+    @They.Should("Post 2 values to the post page", () => {
         var result = Runner.Post("~/posty", new { thing1 = "stuff", thing2 = "morestuff" });
         return result.Html.Trim().ShouldEqual("POST - 2");
     })
-    @It.Should("Record 'chocolate' as a form value", () => {
+    @They.Should("Record 'chocolate' as a form value", () => {
         var result = Runner.Post("~/posty", new { chocolate = "stuff", dookey = "morestuff" });
         return result.FormValues.ShouldContainKey("chocolate");
     })

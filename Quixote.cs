@@ -8,9 +8,7 @@ using System.Linq;
 using System.Dynamic;
 using System.Collections;
 using System.Text;
-
 namespace Quixote{
-
     public static class Runner {
         /// <summary>
         /// This is a helper method that will decipher the root URL of your site
@@ -179,6 +177,32 @@ namespace Quixote{
         }
     
     }
+
+    public static class TheFollowing {
+        /// <summary>
+        /// Helps readability if you describe the context of your tests
+        /// </summary>
+        public static dynamic Describes(string context) {
+            return new HtmlString(string.Format("<h2>{0}</h2>", context));
+        }
+    }
+    /// <summary>
+    /// Syntactic Sugar
+    /// </summary>
+    public static class They {
+        public static dynamic Should(string name,Func<dynamic> action){
+            return It.Should(name,action);
+        }
+        public static dynamic ShouldNot(string name, Func<dynamic> action) {
+            return It.Should(name, action);
+        }
+        public static dynamic Should(string name) {
+            return It.Should(name);
+        }
+        public static dynamic ShouldNot(string name) {
+            return It.Should(name);
+        }
+    }
     /// <summary>
     /// The core execution class of Quixote
     /// </summary>
@@ -202,11 +226,15 @@ namespace Quixote{
         
             return result;
         }
+
         /// <summary>
-        /// Helps readability if you describe the context of your tests
+        /// There is no difference between Should/ShouldNot. Just readability
         /// </summary>
-        public static dynamic Describes(string context) {
-            return new HtmlString(string.Format("<h2>{0}</h2>", context));
+        public static dynamic ShouldNot(string name) {
+            return Should(name);
+        }
+        public static dynamic ShouldNot(string name, Func<dynamic> action) {
+            return Should(name, action);
         }
         /// <summary>
         /// Stubs out a test and marks it as "pending"
