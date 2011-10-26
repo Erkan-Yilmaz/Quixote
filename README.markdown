@@ -24,6 +24,32 @@ Now run the page. You're rockin!
 	
 How Do You Use It?
 ------------------
+You can use this for Acceptance Tests much easier than you can use something like Selenium or WatiN - and that's not a knock on those toolsets. They just take a bit to setup (Selenium requires Firefox and Java, WatiN relies on IE for everything). My goal with this is to make things drop-dead simple...
+
+The simplest thing to do is fire  up a Console App in your project called "AcceptanceTests" and add the Quixote code file. You'll want access to the code ad you'll likely want to change a few things in there.
+
+Then, write some tests:
+
+    class Program {
+        static void Main(string[] args) {
+            Runner.SiteRoot = "http://localhost:1701/";
+            TheFollowing.Describes("Home Page");
+
+            It.Should("Have 'VidPub' in the title", () => {
+                return Runner.Get("/").Title.ShouldContain("VidPugb");
+            });
+
+            It.Should("Log me in with correct credentials", () => {
+                var post = Runner.Post("/account/logon", new { login = "rob@tekpub.com", password = "password" });
+                return post.Title.ShouldContain("Welcome");
+            });
+
+            Console.Read();
+        }
+    }
+
+POST and GET are available off of the Runner class and, pretty much do what you see here. You can also drop Quixote into your Web app (MVC or WebMatrix) and run your acceptance tests as a webpage.
+
 A typical flow would be to decide what it is you're doing before you do it. Crazy Talk. Let's say you're going to have a party:
 	
 	@TheFollowing.Describes("Drinks for the party")
