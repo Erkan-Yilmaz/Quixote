@@ -3,7 +3,7 @@ Quixote is a single-file, drop-in high-level test-runner for ASP.NET/WebMatrix u
 
 If you know Rails, you know RSpec and Cucumber. These high-level testing frameworks allow you to test how your app responds when people use your application (GET and POST requests, etc). These frameworks are pretty advanced - Cucumber allows you to simulate button and link clicks if you like - also entering data into a form field and checking the validations.
 
-Quixote isn't quite that smart yet - but that's where I'd like to go. Right now is does basic assertions on logic with the typical "result.ShouldEqual(expectation)" as well as offering GET and POST functionality against your site - both with the option of sending in cookies.
+Quixote isn't quite that smart yet - but that's where I'd like to go. Right now it does basic assertions on logic with the typical "result.ShouldEqual(expectation)" as well as offering GET and POST functionality against your site - both with the option of sending in cookies.
 
 It's much easier than Watin, prettier than NUnit, and helps people who need to test their WebMatrix app (since there currently isn't a way to test a WebMatrix app). That's the focus - if you need deep testing on your super-swell architected Domain Model From Space - you should push that to a new project and use NUnit or XUnit. Quixote is a bit more high level.
 
@@ -26,7 +26,7 @@ How Do You Use It?
 ------------------
 You can use this for Acceptance Tests much easier than you can use something like Selenium or WatiN - and that's not a knock on those toolsets. They just take a bit to setup (Selenium requires Firefox and Java, WatiN relies on IE for everything). My goal with this is to make things drop-dead simple...
 
-The simplest thing to do is fire  up a Console App in your project called "AcceptanceTests" and add the Quixote code file. You'll want access to the code ad you'll likely want to change a few things in there.
+The simplest thing to do is fire  up a Console App in your project called "AcceptanceTests" and add the Quixote code file. You'll want access to the code and you'll likely want to change a few things in there.
 
 Then, write some tests:
 
